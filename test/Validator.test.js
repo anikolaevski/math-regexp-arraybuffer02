@@ -6,12 +6,36 @@ test('Test Validator ObiOne', () => {
   expect(result).toBe(sourceData);
 });
 
+test('Test Validator Obi_One', () => {
+  const sourceData = 'Obi_One';
+  const result = Validator.validateUsername(sourceData);
+  expect(result).toBe(sourceData);
+});
+
+test('Test Validator Obi-One', () => {
+  const sourceData = 'Obi-One';
+  const result = Validator.validateUsername(sourceData);
+  expect(result).toBe(sourceData);
+});
+
 test('Test Validator Obi+One', () => {
   const sourceData = 'Obi+One';
   const expected = `Name "${sourceData}": allowed only letters, numbers, underline and dash`;
   expect(() => {
     Validator.validateUsername(sourceData);
   }).toThrow(expected);
+});
+
+test('Test Validator Obi1One', () => {
+  const sourceData = 'Obi1One';
+  const result = Validator.validateUsername(sourceData);
+  expect(result).toBe(sourceData);
+});
+
+test('Test Validator Obi12One', () => {
+  const sourceData = 'Obi12One';
+  const result = Validator.validateUsername(sourceData);
+  expect(result).toBe(sourceData);
 });
 
 test('Test Validator Obi123One', () => {
@@ -32,6 +56,22 @@ test('Test Validator _ObiOne', () => {
 
 test('Test Validator Obi1', () => {
   const sourceData = 'Obi1';
+  const expected = `Name "${sourceData}": should be concluded with letter`;
+  expect(() => {
+    Validator.validateUsername(sourceData);
+  }).toThrow(expected);
+});
+
+test('Test Validator ObiOne_', () => {
+  const sourceData = 'ObiOne_';
+  const expected = `Name "${sourceData}": should be concluded with letter`;
+  expect(() => {
+    Validator.validateUsername(sourceData);
+  }).toThrow(expected);
+});
+
+test('Test Validator ObiOne-', () => {
+  const sourceData = 'ObiOne-';
   const expected = `Name "${sourceData}": should be concluded with letter`;
   expect(() => {
     Validator.validateUsername(sourceData);
